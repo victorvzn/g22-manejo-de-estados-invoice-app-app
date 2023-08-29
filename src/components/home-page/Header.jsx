@@ -2,7 +2,7 @@ import { TbSquareRoundedPlusFilled } from "react-icons/tb";
 
 const Header = () => {
   return (
-    <header className="w-[740px] mx-auto my-20 flex justify-between items-center">
+    <header className="w-[940px] mx-auto my-20 flex justify-between items-center">
       <div className="text-white">
         <h1 className="text-4xl font-medium">Invoices</h1>
         <span>There are 7 total invoices</span>
