@@ -9,3 +9,12 @@ export const fetchInvoices = async () => {
   
   return data.invoices
 }
+
+export const getInvoice = async (id) => {
+  const response = await fetch(url)
+  const data = await response.json()
+
+  const invoiceFound = data.invoices.find(invoice => invoice.id === id)
+
+  return invoiceFound
+}

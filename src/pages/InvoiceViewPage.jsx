@@ -1,16 +1,28 @@
-import { Link } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
+import { useEffect, useState } from "react"
 
 import BaseTag from "../components/shared/BaseTag"
+
+import { getInvoice } from "../services/invoices"
 
 import { TbChevronLeft, TbCircleFilled } from "react-icons/tb"
 
 const InvoiceViewPage = () => {
+  const params = useParams()
+  const [invoice, setInvoice] = useState(null)
+
+  useEffect(() => {
+    getInvoice(params.id)
+      // .then(setInvoice)
+      .then(invoice => setInvoice(invoice))
+  }, [])
+
   return (
     <>
       <nav className="w-[940px] mx-auto my-12">
         <Link to='/' className="text-white hover:text-[#6946f8] duration-300 font-bold flex gap-4 items-center  ">
           <TbChevronLeft />
-          Go back
+          Go back - {params.id}
         </Link>
       </nav>
 
@@ -22,7 +34,7 @@ const InvoiceViewPage = () => {
             textColor='text-emerald-400'
           >
             <TbCircleFilled size=".7rem" />
-            <span className="capitalize">Paid</span>
+            <span className="capitalize">{invoice?.status}</span>
           </BaseTag>
         </div>
 
@@ -51,8 +63,8 @@ const InvoiceViewPage = () => {
         <div className="flex justify-between">
           <div className="text-3xl">
             <span className="text-slate-400">#</span>
-            <span className="font-extrabold">XM9141</span>
-            <div className="text-xl mt-1">Graphic Design</div>
+            <span className="font-extrabold">{invoice?.code}</span>
+            <div className="text-xl mt-1">{invoice?.invoice?.project?.description}</div>
           </div>
           <div className="text-sm text-right">
             <div>Line 1</div>
@@ -91,10 +103,10 @@ const InvoiceViewPage = () => {
 
         <table className="bg-[#252945] w-full rounded-lg mt-10">
           <thead>
-            <td className="p-6">Item Name</td>
-            <td className="p-6 w-44">QTY</td>
-            <td className="p-6 w-44">Price</td>
-            <td className="p-6 w-44">Total</td>
+            <th className="p-6">Item Name</th>
+            <th className="p-6 w-44">QTY</th>
+            <th className="p-6 w-44">Price</th>
+            <th className="p-6 w-44">Total</th>
           </thead>
           <tbody>
             <tr>
@@ -118,6 +130,9 @@ const InvoiceViewPage = () => {
           </tfoot>
         </table>
       </main>
+
+      <pre className="text-white">{JSON.stringify(invoice, null, 2)}</pre>
+
     </>
   )
 }
