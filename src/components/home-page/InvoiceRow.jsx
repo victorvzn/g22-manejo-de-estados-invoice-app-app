@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom"
+
 import { TbChevronRight, TbCircleFilled } from "react-icons/tb"
 
 import BaseTag from "../shared/BaseTag"
@@ -6,7 +8,7 @@ import { formatDate, formatNumber } from "../../utils"
 
 const InvoiceRow = ({ invoice }) => {
   return (
-    <article className="text-white flex justify-between items-center gap-3 bg-slate-700 rounded-lg px-4 py-6">
+    <article className="text-white flex justify-between items-center gap-3 bg-[#1f213a] rounded-lg px-4 py-6">
       <div className="w-20">
         <span className="text-slate-400">#</span>
         <span className="font-bold">{invoice.code}</span>
@@ -26,7 +28,7 @@ const InvoiceRow = ({ invoice }) => {
             textColor='text-emerald-400'
           >
             <TbCircleFilled size=".7rem" />
-            {invoice.status}
+            <span className="capitalize">{invoice.status}</span>
           </BaseTag>
         }
         {invoice.status === 'pending' &&
@@ -35,7 +37,7 @@ const InvoiceRow = ({ invoice }) => {
             textColor='text-orange-400'
           >
             <TbCircleFilled size=".7rem" />
-            {invoice.status}
+            <span className="capitalize">{invoice.status}</span>
           </BaseTag>
         }
         {invoice.status === 'draft' &&
@@ -44,12 +46,14 @@ const InvoiceRow = ({ invoice }) => {
             textColor='text-slate-400'
           >
             <TbCircleFilled size=".7rem" />
-            {invoice.status}
+            <span className="capitalize">{invoice.status}</span>
           </BaseTag>
         }
       </div>
       <div className="w-5 cursor-pointer">
-        <TbChevronRight />
+        <Link to={`/${invoice.id}/view`}>
+          <TbChevronRight />
+        </Link>
       </div>
     </article>
   )

@@ -10,7 +10,7 @@ export const formatNumber = (number) => {
   return new Intl.NumberFormat(locales, options).format(number)
 }
 
-export const formatDate = (value = '') => {
+export const formatDate = (value = '', defaultFormat = 'dd MMM yyyy') => {
   const newDate = new Date(value)
-  return format(newDate, 'dd MMM yyyy')
+  return format(newDate, defaultFormat)
 }

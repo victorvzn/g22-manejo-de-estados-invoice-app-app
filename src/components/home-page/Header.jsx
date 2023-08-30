@@ -9,7 +9,7 @@ const Header = () => {
       </div>
 
       <button
-        className="bg-indigo-400 rounded-full px-5 py-3 font-semibold text-white flex justify-between items-center gap-4"
+        className="bg-[#7c5df9] rounded-full px-5 py-3 font-semibold text-white flex justify-between items-center gap-4"
       >
         <TbSquareRoundedPlusFilled size="2rem" />
         New Invoice
