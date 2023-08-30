@@ -2,7 +2,7 @@ import { TbChevronRight, TbCircleFilled } from "react-icons/tb"
 
 import BaseTag from "../shared/BaseTag"
 
-import { formatNumber } from "../../utils"
+import { formatDate, formatNumber } from "../../utils"
 
 const InvoiceRow = ({ invoice }) => {
   return (
@@ -11,7 +11,9 @@ const InvoiceRow = ({ invoice }) => {
         <span className="text-slate-400">#</span>
         <span className="font-bold">{invoice.code}</span>
       </div>
-      <div className="w-40 font-bold">{invoice.invoice.date}</div>
+      <div className="w-40 font-bold">
+        Due {formatDate(invoice.invoice.date)}
+      </div>
       <div className="w-40 font-bold">{invoice.bill.to.client.name}</div>
       <div className="w-44 text-3xl text-right">
         {invoice.invoice.currency.symbol}
